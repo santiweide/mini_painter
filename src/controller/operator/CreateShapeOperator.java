@@ -1,6 +1,5 @@
 package controller.operator;
 
-import controller.IOperator;
 import controller.OperationHistory;
 import model.interfaces.IApplicationState;
 import model.interfaces.IShapeList;

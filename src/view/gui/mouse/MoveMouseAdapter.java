@@ -1,6 +1,6 @@
 package view.gui.mouse;
 
-import controller.MoveShapeOperator;
+import controller.operator.MoveShapeOperator;
 import model.interfaces.IShapeList;
 import model.persistence.ApplicationState;
 import model.persistence.draw.Point;

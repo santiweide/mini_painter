@@ -1,6 +1,6 @@
-package controller;
+package controller.operator;
 
-import model.interfaces.IApplicationState;
+import controller.OperationHistory;
 import model.interfaces.IShapeList;
 import model.interfaces.IUndoable;
 import model.persistence.draw.ShapeConfig;

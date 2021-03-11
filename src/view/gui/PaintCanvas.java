@@ -31,7 +31,7 @@ public class PaintCanvas extends PaintCanvasBase implements IShapeListObserver {
     }
 
     @Override
-    public void paint(Graphics g){
+    public void paintComponent(Graphics g){
 
         for (IShape iShape : shapeList.getShapeList()) {
             iShape.draw(g);
