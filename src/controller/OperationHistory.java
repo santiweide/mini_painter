@@ -4,6 +4,9 @@ import model.interfaces.IUndoable;
 
 import java.util.Stack;
 
+/**
+ * 管理redo 和 undo
+ */
 public class OperationHistory {
     /**
      * 操作栈
