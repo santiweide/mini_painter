@@ -5,13 +5,18 @@ import model.ShapeShadingType;
 import model.ShapeType;
 import model.MouseMode;
 import model.dialogs.DialogProvider;
+import model.interfaces.IMouseAdapterObserver;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
 import view.interfaces.IUiModule;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ApplicationState implements IApplicationState {
     private final IUiModule uiModule;
     private final IDialogProvider dialogProvider;
+    private List<IMouseAdapterObserver> mouseAdapterObserverList;
 
     private ShapeType activeShapeType;
     private ShapeColor activePrimaryColor;
@@ -22,6 +27,7 @@ public class ApplicationState implements IApplicationState {
     public ApplicationState(IUiModule uiModule) {
         this.uiModule = uiModule;
         this.dialogProvider = new DialogProvider(this);
+        mouseAdapterObserverList = new ArrayList<>();
         setDefaults();
     }
 
@@ -48,6 +54,7 @@ public class ApplicationState implements IApplicationState {
     @Override
     public void setActiveStartAndEndPointMode() {
         activeMouseMode = uiModule.getDialogResponse(dialogProvider.getChooseStartAndEndPointModeDialog());
+        notifyObservers();
     }
 
     @Override
@@ -81,5 +88,20 @@ public class ApplicationState implements IApplicationState {
         activeSecondaryColor = ShapeColor.GREEN;
         activeShapeShadingType = ShapeShadingType.FILLED_IN;
         activeMouseMode = MouseMode.DRAW;
+    }
+
+    /**
+     * 注册观察者
+     */
+    @Override
+    public void register(IMouseAdapterObserver observer) {
+        mouseAdapterObserverList.add(observer);
+    }
+
+    @Override
+    public void notifyObservers(){
+        for(IMouseAdapterObserver observer: mouseAdapterObserverList){
+            observer.run();
+        }
     }
 }

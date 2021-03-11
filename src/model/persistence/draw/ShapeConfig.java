@@ -17,6 +17,14 @@ public class ShapeConfig {
         this.endPoint = endValuePoint;
     }
 
+    public Point getStartPoint() {
+        return startPoint;
+    }
+
+    public Point getEndPoint() {
+        return endPoint;
+    }
+
     /**
      * 左上为起点
      * @return

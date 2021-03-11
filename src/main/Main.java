@@ -2,7 +2,7 @@ package main;
 
 import controller.IJPaintController;
 import controller.JPaintController;
-import controller.ShapeMouseListener;
+import view.gui.MouseObserver;
 import model.ShapeList;
 import model.interfaces.IShapeList;
 import model.persistence.ApplicationState;
@@ -29,9 +29,8 @@ public class Main {
         IJPaintController controller = new JPaintController(uiModule, appState);
         controller.setup();
 
-        ShapeMouseListener mouseListener = new ShapeMouseListener(appState, shapeList, new ShapeConfig());
-        paintCanvas.addMouseListener(mouseListener);
-        paintCanvas.addMouseMotionListener(mouseListener);
+        MouseObserver mouseObserver = new MouseObserver(appState, paintCanvas, shapeList, new ShapeConfig());
+        mouseObserver.run();
         // For example purposes only; remove all lines below from your final project.
 //        try {
 //            Thread.sleep(500);
