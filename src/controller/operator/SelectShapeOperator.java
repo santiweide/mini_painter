@@ -33,6 +33,7 @@ public class SelectShapeOperator implements IOperator {
             }
         }
         if (!containsSelectedShape) {
+            // deselect
             shapeList.clearSelectList();
             shapeList.getClipBoard().clear();
         }

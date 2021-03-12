@@ -68,7 +68,11 @@ public class ShapeList implements IShapeList {
 
     @Override
     public void clearSelectList() {
+        for(IShape shape : selectedShapeList){
+            shape.setIsSelected(false);
+        }
         selectedShapeList.clear();
+        notifyObserver();
     }
 
     @Override
