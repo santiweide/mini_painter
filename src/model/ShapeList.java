@@ -80,8 +80,25 @@ public class ShapeList implements IShapeList {
     }
 
     @Override
+    public void clearClipBoard() {
+        clipBoardShapeList.clear();
+    }
+
+    @Override
     public void setSelectList(List<IShape> newSelectedList) {
         selectedShapeList = newSelectedList;
+    }
+
+    @Override
+    public void addAll(List<IShape> newShapeList) {
+        shapeList.addAll(newShapeList);
+        notifyObserver();
+    }
+
+    @Override
+    public void removeAll(List<IShape> newShapeList) {
+        shapeList.removeAll(newShapeList);
+        notifyObserver();
     }
 
 }

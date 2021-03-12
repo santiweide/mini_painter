@@ -26,7 +26,7 @@ public class Main {
 
         // appState里面也要存一下shapeList...？有必要吗？ 不知道...也许把shapeList放到ApplicationState里面也不太合适吧？
         ApplicationState appState = new ApplicationState(uiModule);
-        IJPaintController controller = new JPaintController(uiModule, appState);
+        IJPaintController controller = new JPaintController(uiModule, appState, shapeList);
         controller.setup();
 
         MouseObserver mouseObserver = new MouseObserver(appState, paintCanvas, shapeList, new ShapeConfig());
