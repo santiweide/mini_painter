@@ -1,5 +1,6 @@
 package controller.operator;
 
+import controller.OperationHistory;
 import model.interfaces.IShapeList;
 import model.interfaces.IUndoable;
 import view.interfaces.draw.IShape;
@@ -18,6 +19,7 @@ public class DeleteOperator implements IOperator, IUndoable {
     public void run() {
         selectedList = shapeList.getSelectList();
         shapeList.removeAll(shapeList.getSelectList());
+        OperationHistory.add(this);
     }
 
     @Override
