@@ -7,7 +7,7 @@ import java.awt.Graphics;
 /**
  * @author algorithm
  */
-public interface IShape {
+public interface IShape extends ISelectable{
 
     /**
      * 绘制Shape
@@ -23,4 +23,5 @@ public interface IShape {
     IShape move(int dx, int dy);
 
     boolean contains(Point startPoint);
+
 }

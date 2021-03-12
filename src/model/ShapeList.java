@@ -56,7 +56,9 @@ public class ShapeList implements IShapeList {
 
     @Override
     public void addSelectedList(IShape shape) {
+        shape.setIsSelected(true);
         selectedShapeList.add(shape);
+        notifyObserver();
     }
 
     @Override

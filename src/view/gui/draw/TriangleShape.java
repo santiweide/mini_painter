@@ -20,4 +20,14 @@ public class TriangleShape implements IShape {
     public boolean contains(Point startPoint) {
         return false;
     }
+
+    @Override
+    public void setIsSelected(boolean b) {
+
+    }
+
+    @Override
+    public boolean getIsSelected() {
+        return false;
+    }
 }

@@ -25,6 +25,7 @@ public class RectShape implements IShape {
     private final ShapeShadingType shapeShadingType;
     private final Color primaryColor;
     private final Color secondaryColor;
+    private boolean isSelected;
 
     public RectShape(PositionConfig positionConfig, IApplicationState appState) {
         this.positionConfig = positionConfig;
@@ -33,16 +34,21 @@ public class RectShape implements IShape {
         this.shapeShadingType = appState.getActiveShapeShadingType();
     }
 
-    public RectShape(PositionConfig positionConfig, Color primaryColor, Color secondaryColor, ShapeShadingType shapeShadingType) {
+    public RectShape(PositionConfig positionConfig, Color primaryColor, Color secondaryColor, ShapeShadingType shapeShadingType, boolean isSelected) {
         this.positionConfig = positionConfig;
         this.primaryColor = primaryColor;
         this.secondaryColor = secondaryColor;
         this.shapeShadingType = shapeShadingType;
+        this.isSelected = isSelected;
     }
 
     @Override
     public void draw(Graphics p) {
         Graphics2D g = (Graphics2D) p;
+        if(isSelected) {
+            g.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{1}, 0));
+            g.drawRect(positionConfig.getAdjustedStart().getX()-5, positionConfig.getAdjustedStart().getY()-5, positionConfig.getWidth()+10, positionConfig.getHeight()+10);
+        }
         if (shapeShadingType.equals(ShapeShadingType.OUTLINE)) {
             g.setColor(primaryColor);
             g.setStroke(new BasicStroke(5));
@@ -64,7 +70,7 @@ public class RectShape implements IShape {
         PositionConfig newPositionConfig = new PositionConfig();
         newPositionConfig.setStartPoint(new Point(positionConfig.getStartPoint().getX() + dx, positionConfig.getStartPoint().getY() + dy));
         newPositionConfig.setEndPoint(new Point(positionConfig.getEndPoint().getX() + dx, positionConfig.getEndPoint().getY() + dy));
-        return new RectShape(newPositionConfig, primaryColor, secondaryColor, shapeShadingType);
+        return new RectShape(newPositionConfig, primaryColor, secondaryColor, shapeShadingType, isSelected);
     }
 
     @Override
@@ -73,4 +79,13 @@ public class RectShape implements IShape {
                 && positionConfig.getAdjustedStart().getX() + positionConfig.getWidth() > startPoint.getX() && positionConfig.getAdjustedStart().getY() + positionConfig.getWidth() > startPoint.getY());
     }
 
+    @Override
+    public void setIsSelected(boolean b) {
+        isSelected = b;
+    }
+
+    @Override
+    public boolean getIsSelected() {
+        return isSelected;
+    }
 }
