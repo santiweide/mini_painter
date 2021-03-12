@@ -17,10 +17,9 @@ public class ShapeFactory {
             return new RectShape(positionConfig, appState);
         } else if(appState.getActiveShapeType().equals(ShapeType.TRIANGLE)){
             return new TriangleShape(positionConfig, appState);
+        } else if(appState.getActiveShapeType().equals(ShapeType.ELLIPSE)){
+            return new EllipseShape(positionConfig, appState);
         }
-//        else if(appState.getActiveShapeType().equals(ShapeType.ELLIPSE)){
-//            return new EllipseShape(positionConfig, appState);
-//        }
         System.out.println("Error no active shape type");
         return new RectShape(config, appState);
     }
