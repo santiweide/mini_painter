@@ -5,7 +5,7 @@ import model.MouseMode;
 import model.interfaces.IMouseAdapterObserver;
 import model.interfaces.IShapeList;
 import model.persistence.ApplicationState;
-import model.persistence.draw.ShapeConfig;
+import model.persistence.draw.PositionConfig;
 import view.gui.mouse.DrawMouseAdapter;
 import view.gui.mouse.MoveMouseAdapter;
 import view.gui.mouse.SelectMouseAdapter;
@@ -22,13 +22,13 @@ public class MouseObserver implements IMouseAdapterObserver {
     private ApplicationState appState;
     private PaintCanvasBase paintCanvas;
     private IShapeList shapeList;
-    private ShapeConfig shapeConfig;
+    private PositionConfig positionConfig;
 
-    public MouseObserver(ApplicationState appState, PaintCanvasBase paintCanvas, IShapeList shapeList, ShapeConfig shapeConfig) {
+    public MouseObserver(ApplicationState appState, PaintCanvasBase paintCanvas, IShapeList shapeList, PositionConfig positionConfig) {
         this.appState = appState;
         this.paintCanvas = paintCanvas;
         this.shapeList = shapeList;
-        this.shapeConfig = shapeConfig;
+        this.positionConfig = positionConfig;
         appState.register(this);
     }
 
@@ -44,11 +44,11 @@ public class MouseObserver implements IMouseAdapterObserver {
         }
 
         if (appState.getActiveMouseMode().equals(MouseMode.DRAW)) {
-            paintCanvas.addMouseListener(new DrawMouseAdapter(appState, shapeList, shapeConfig));
+            paintCanvas.addMouseListener(new DrawMouseAdapter(appState, shapeList, positionConfig));
         } else if (appState.getActiveMouseMode().equals(MouseMode.MOVE)) {
-            paintCanvas.addMouseListener(new MoveMouseAdapter(appState, shapeList, shapeConfig));
+            paintCanvas.addMouseListener(new MoveMouseAdapter(appState, shapeList, positionConfig));
         }  else if (appState.getActiveMouseMode().equals(MouseMode.SELECT)) {
-            paintCanvas.addMouseListener(new SelectMouseAdapter(appState, shapeList, shapeConfig));
+            paintCanvas.addMouseListener(new SelectMouseAdapter(appState, shapeList, positionConfig));
         }
     }
 }

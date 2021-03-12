@@ -2,9 +2,8 @@ package view.gui.draw;
 
 import model.ShapeShadingType;
 import model.interfaces.IApplicationState;
-import model.persistence.ApplicationState;
 import model.persistence.draw.Point;
-import model.persistence.draw.ShapeConfig;
+import model.persistence.draw.PositionConfig;
 import utils.ColorMap;
 import view.interfaces.draw.IShape;
 
@@ -19,7 +18,7 @@ public class RectShape implements IShape {
     /**
      * position info
      */
-    private final ShapeConfig shapeConfig;
+    private final PositionConfig positionConfig;
     /**
      * filled / outlined / filled and outlined
      */
@@ -27,15 +26,15 @@ public class RectShape implements IShape {
     private final Color primaryColor;
     private final Color secondaryColor;
 
-    public RectShape(ShapeConfig shapeConfig, IApplicationState appState) {
-        this.shapeConfig = shapeConfig;
+    public RectShape(PositionConfig positionConfig, IApplicationState appState) {
+        this.positionConfig = positionConfig;
         this.primaryColor = ColorMap.getColor(appState.getActivePrimaryColor());
         this.secondaryColor = ColorMap.getColor(appState.getActiveSecondaryColor());
         this.shapeShadingType = appState.getActiveShapeShadingType();
     }
 
-    public RectShape(ShapeConfig shapeConfig, Color primaryColor, Color secondaryColor, ShapeShadingType shapeShadingType) {
-        this.shapeConfig = shapeConfig;
+    public RectShape(PositionConfig positionConfig, Color primaryColor, Color secondaryColor, ShapeShadingType shapeShadingType) {
+        this.positionConfig = positionConfig;
         this.primaryColor = primaryColor;
         this.secondaryColor = secondaryColor;
         this.shapeShadingType = shapeShadingType;
@@ -47,31 +46,31 @@ public class RectShape implements IShape {
         if (shapeShadingType.equals(ShapeShadingType.OUTLINE)) {
             g.setColor(primaryColor);
             g.setStroke(new BasicStroke(5));
-            g.drawRect(shapeConfig.getAdjustedStart().getX(), shapeConfig.getAdjustedStart().getY(), shapeConfig.getWidth(), shapeConfig.getHeight());
+            g.drawRect(positionConfig.getAdjustedStart().getX(), positionConfig.getAdjustedStart().getY(), positionConfig.getWidth(), positionConfig.getHeight());
         } else if (shapeShadingType.equals(ShapeShadingType.FILLED_IN)) {
             g.setColor(primaryColor);
-            g.fillRect(shapeConfig.getAdjustedStart().getX(), shapeConfig.getAdjustedStart().getY(), shapeConfig.getWidth(), shapeConfig.getHeight());
+            g.fillRect(positionConfig.getAdjustedStart().getX(), positionConfig.getAdjustedStart().getY(), positionConfig.getWidth(), positionConfig.getHeight());
         } else if (shapeShadingType.equals(ShapeShadingType.OUTLINE_AND_FILLED_IN)) {
             g.setColor(primaryColor);
             g.setStroke(new BasicStroke(5));
-            g.drawRect(shapeConfig.getAdjustedStart().getX(), shapeConfig.getAdjustedStart().getY(), shapeConfig.getWidth(), shapeConfig.getHeight());
+            g.drawRect(positionConfig.getAdjustedStart().getX(), positionConfig.getAdjustedStart().getY(), positionConfig.getWidth(), positionConfig.getHeight());
             g.setColor(secondaryColor);
-            g.fillRect(shapeConfig.getAdjustedStart().getX(), shapeConfig.getAdjustedStart().getY(), shapeConfig.getWidth(), shapeConfig.getHeight());
+            g.fillRect(positionConfig.getAdjustedStart().getX(), positionConfig.getAdjustedStart().getY(), positionConfig.getWidth(), positionConfig.getHeight());
         }
     }
 
     @Override
     public IShape move(int dx, int dy) {
-        ShapeConfig newShapeConfig = new ShapeConfig();
-        newShapeConfig.setStartPoint(new Point(shapeConfig.getStartPoint().getX() + dx, shapeConfig.getStartPoint().getY() + dy));
-        newShapeConfig.setEndPoint(new Point(shapeConfig.getEndPoint().getX() + dx, shapeConfig.getEndPoint().getY() + dy));
-        return new RectShape(newShapeConfig, primaryColor, secondaryColor, shapeShadingType);
+        PositionConfig newPositionConfig = new PositionConfig();
+        newPositionConfig.setStartPoint(new Point(positionConfig.getStartPoint().getX() + dx, positionConfig.getStartPoint().getY() + dy));
+        newPositionConfig.setEndPoint(new Point(positionConfig.getEndPoint().getX() + dx, positionConfig.getEndPoint().getY() + dy));
+        return new RectShape(newPositionConfig, primaryColor, secondaryColor, shapeShadingType);
     }
 
     @Override
     public boolean contains(Point startPoint) {
-        return (shapeConfig.getAdjustedStart().getX() < startPoint.getX() && shapeConfig.getAdjustedStart().getY() < startPoint.getY()
-                && shapeConfig.getAdjustedStart().getX() + shapeConfig.getWidth() > startPoint.getX() && shapeConfig.getAdjustedStart().getY() + shapeConfig.getWidth() > startPoint.getY());
+        return (positionConfig.getAdjustedStart().getX() < startPoint.getX() && positionConfig.getAdjustedStart().getY() < startPoint.getY()
+                && positionConfig.getAdjustedStart().getX() + positionConfig.getWidth() > startPoint.getX() && positionConfig.getAdjustedStart().getY() + positionConfig.getWidth() > startPoint.getY());
     }
 
 }

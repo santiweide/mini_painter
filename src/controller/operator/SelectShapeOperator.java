@@ -1,7 +1,7 @@
 package controller.operator;
 
 import model.interfaces.IShapeList;
-import model.persistence.draw.ShapeConfig;
+import model.persistence.draw.PositionConfig;
 import view.interfaces.draw.IShape;
 
 /**
@@ -15,11 +15,11 @@ public class SelectShapeOperator implements IOperator {
     /**
      * select area's position info
      */
-    private final ShapeConfig shapeConfig;
+    private final PositionConfig positionConfig;
 
-    public SelectShapeOperator(IShapeList shapeList, ShapeConfig shapeConfig) {
+    public SelectShapeOperator(IShapeList shapeList, PositionConfig positionConfig) {
         this.shapeList = shapeList;
-        this.shapeConfig = shapeConfig;
+        this.positionConfig = positionConfig;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class SelectShapeOperator implements IOperator {
         boolean containsSelectedShape = false;
         for (IShape shape : shapeList.getShapeList()) {
             // find all that could be selected
-            if (shape.contains(shapeConfig.getStartPoint())) {
+            if (shape.contains(positionConfig.getStartPoint())) {
                 containsSelectedShape = true;
                 shapeList.addSelectedList(shape);
             }

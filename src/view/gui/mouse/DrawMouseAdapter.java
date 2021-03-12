@@ -3,9 +3,8 @@ package view.gui.mouse;
 import controller.operator.CreateShapeOperator;
 import model.interfaces.IApplicationState;
 import model.interfaces.IShapeList;
-import model.persistence.ApplicationState;
 import model.persistence.draw.Point;
-import model.persistence.draw.ShapeConfig;
+import model.persistence.draw.PositionConfig;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -17,25 +16,25 @@ public class DrawMouseAdapter extends MouseAdapter {
 
     private IApplicationState appState;
     private IShapeList shapeList;
-    private ShapeConfig shapeConfig;
+    private PositionConfig positionConfig;
 
-    public DrawMouseAdapter(IApplicationState appState, IShapeList shapeList, ShapeConfig shapeConfig) {
+    public DrawMouseAdapter(IApplicationState appState, IShapeList shapeList, PositionConfig positionConfig) {
         this.appState = appState;
         this.shapeList = shapeList;
-        this.shapeConfig = shapeConfig;
+        this.positionConfig = positionConfig;
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        shapeConfig.setStartPoint(new Point(e.getX(), e.getY()));
+        positionConfig.setStartPoint(new Point(e.getX(), e.getY()));
         System.out.println("Draw Press " + e.getX() + "," + e.getY());
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        shapeConfig.setEndPoint(new Point(e.getX(), e.getY()));
+        positionConfig.setEndPoint(new Point(e.getX(), e.getY()));
         System.out.println("Draw Released " + e.getX() + "," + e.getY());
-        (new CreateShapeOperator(shapeList, shapeConfig, appState)).run();
+        (new CreateShapeOperator(shapeList, positionConfig, appState)).run();
     }
 
 }

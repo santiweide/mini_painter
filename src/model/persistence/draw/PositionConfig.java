@@ -5,7 +5,7 @@ package model.persistence.draw;
  *
  * @author algorithm
  */
-public class ShapeConfig {
+public class PositionConfig {
 
     private Point startPoint;
     private Point endPoint;

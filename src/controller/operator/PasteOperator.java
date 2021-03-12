@@ -1,10 +1,8 @@
 package controller.operator;
 
 import controller.OperationHistory;
-import model.interfaces.IApplicationState;
 import model.interfaces.IShapeList;
 import model.interfaces.IUndoable;
-import model.persistence.draw.ShapeConfig;
 import view.interfaces.draw.IShape;
 
 import java.util.ArrayList;
