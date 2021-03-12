@@ -1,6 +1,7 @@
 package model.interfaces;
 
 import view.gui.PaintCanvas;
+import view.gui.draw.GroupShape;
 import view.interfaces.PaintCanvasBase;
 import view.interfaces.draw.IShape;
 
@@ -45,4 +46,8 @@ public interface IShapeList {
     void addAll(List<IShape> newShapeList);
 
     void removeAll(List<IShape> newShapeList);
+
+    void addGroup();
+
+    GroupShape removeGroup();
 }

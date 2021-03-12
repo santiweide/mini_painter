@@ -11,7 +11,7 @@ import view.interfaces.draw.IShape;
 /**
  * @author algorithm
  */
-public class CreateShapeOperator  implements IOperator, IUndoable {
+public class CreateShapeOperator implements IOperator, IUndoable {
     private ShapeFactory shapeFactory = new ShapeFactory();
     private IShapeList shapeList;
     private PositionConfig positionConfig;

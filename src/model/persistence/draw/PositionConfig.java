@@ -1,5 +1,8 @@
 package model.persistence.draw;
 
+import static java.lang.Math.min;
+import static java.lang.Math.max;
+
 /**
  * store position info
  *
@@ -27,8 +30,8 @@ public class PositionConfig {
     }
 
     public Point getAdjustedStart() {
-        int startX = Math.min(startPoint.getX(), endPoint.getX());
-        int startY = Math.min(startPoint.getY(), endPoint.getY());
+        int startX = min(startPoint.getX(), endPoint.getX());
+        int startY = min(startPoint.getY(), endPoint.getY());
         return new Point(startX, startY);
     }
 
@@ -48,5 +51,12 @@ public class PositionConfig {
         Point adjustStart = getAdjustedStart();
         Point adjustEnd = getAdjustedEnd();
         return adjustEnd.getY() - adjustStart.getY();
+    }
+
+    public void updateBorder(PositionConfig positionConfig) {
+        startPoint.setX(min(positionConfig.startPoint.getX(), startPoint.getX()));
+        startPoint.setY(min(positionConfig.startPoint.getY(), startPoint.getY()));
+        endPoint.setX(max(positionConfig.endPoint.getX(), endPoint.getX()));
+        endPoint.setY(max(positionConfig.endPoint.getY(), endPoint.getY()));
     }
 }

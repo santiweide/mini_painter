@@ -1,11 +1,14 @@
 package view.gui.draw;
 
 import model.persistence.draw.Point;
+import model.persistence.draw.PositionConfig;
 import view.interfaces.draw.IShape;
 
 import java.awt.*;
 
 public class TriangleShape implements IShape {
+
+    private PositionConfig positionConfig;
     @Override
     public void draw(Graphics g) {
 
@@ -22,6 +25,12 @@ public class TriangleShape implements IShape {
     }
 
     @Override
+    public PositionConfig getPositionConfig() {
+        return positionConfig;
+    }
+
+
+    @Override
     public void setIsSelected(boolean b) {
 
     }
@@ -30,4 +39,5 @@ public class TriangleShape implements IShape {
     public boolean getIsSelected() {
         return false;
     }
+
 }

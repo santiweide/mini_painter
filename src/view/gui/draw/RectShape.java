@@ -26,7 +26,6 @@ public class RectShape implements IShape {
     private final Color primaryColor;
     private final Color secondaryColor;
     private boolean isSelected;
-    private int groupId;
 
     public RectShape(PositionConfig positionConfig, IApplicationState appState) {
         this.positionConfig = positionConfig;
@@ -82,6 +81,11 @@ public class RectShape implements IShape {
     }
 
     @Override
+    public PositionConfig getPositionConfig() {
+        return positionConfig;
+    }
+
+    @Override
     public void setIsSelected(boolean b) {
         isSelected = b;
     }
@@ -90,4 +94,5 @@ public class RectShape implements IShape {
     public boolean getIsSelected() {
         return isSelected;
     }
+
 }
