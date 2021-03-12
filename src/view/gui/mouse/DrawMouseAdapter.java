@@ -1,6 +1,7 @@
 package view.gui.mouse;
 
 import controller.operator.CreateShapeOperator;
+import model.interfaces.IApplicationState;
 import model.interfaces.IShapeList;
 import model.persistence.ApplicationState;
 import model.persistence.draw.Point;
@@ -14,11 +15,11 @@ import java.awt.event.MouseEvent;
  */
 public class DrawMouseAdapter extends MouseAdapter {
 
-    private ApplicationState appState;
+    private IApplicationState appState;
     private IShapeList shapeList;
     private ShapeConfig shapeConfig;
 
-    public DrawMouseAdapter(ApplicationState appState, IShapeList shapeList, ShapeConfig shapeConfig) {
+    public DrawMouseAdapter(IApplicationState appState, IShapeList shapeList, ShapeConfig shapeConfig) {
         this.appState = appState;
         this.shapeList = shapeList;
         this.shapeConfig = shapeConfig;

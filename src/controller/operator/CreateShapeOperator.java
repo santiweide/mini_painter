@@ -41,3 +41,4 @@ public class CreateShapeOperator  implements IOperator, IUndoable {
         shapeList.add(nowShape);
     }
 }
+

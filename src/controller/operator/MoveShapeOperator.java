@@ -35,7 +35,7 @@ public class MoveShapeOperator implements IOperator, IUndoable {
 
             for (IShape tempShape : tmpList)
             {
-                tempShape.addAdjustPos(dx, dy);
+                tempShape.move(dx, dy);
                 newShape = tempShape;
                 shapeList.add(newShape);
             }

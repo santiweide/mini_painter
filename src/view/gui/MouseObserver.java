@@ -8,12 +8,13 @@ import model.persistence.ApplicationState;
 import model.persistence.draw.ShapeConfig;
 import view.gui.mouse.DrawMouseAdapter;
 import view.gui.mouse.MoveMouseAdapter;
+import view.gui.mouse.SelectMouseAdapter;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.event.MouseListener;
 
 /**
- * 根据
+ * observe mouse movement by using different MouseAdapters
  * @author algorithm
  */
 public class MouseObserver implements IMouseAdapterObserver {
@@ -46,6 +47,8 @@ public class MouseObserver implements IMouseAdapterObserver {
             paintCanvas.addMouseListener(new DrawMouseAdapter(appState, shapeList, shapeConfig));
         } else if (appState.getActiveMouseMode().equals(MouseMode.MOVE)) {
             paintCanvas.addMouseListener(new MoveMouseAdapter(appState, shapeList, shapeConfig));
+        }  else if (appState.getActiveMouseMode().equals(MouseMode.SELECT)) {
+            paintCanvas.addMouseListener(new SelectMouseAdapter(appState, shapeList, shapeConfig));
         }
     }
 }

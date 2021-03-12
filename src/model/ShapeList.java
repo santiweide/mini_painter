@@ -21,6 +21,7 @@ public class ShapeList implements IShapeList {
 
     @Override
     public void add(IShape shape) {
+        //IShape shape1 = shape;
         shapeList.add(shape);
         notifyObserver();
     }

@@ -16,33 +16,37 @@ import java.awt.*;
  */
 public class RectShape implements IShape {
     private ShapeConfig shapeConfig;
-    private IApplicationState appState;
+    private ShapeShadingType shapeShadingType;
+    private Color primaryColor;
+    private Color secondaryColor;
 
     public RectShape(ShapeConfig shapeConfig, IApplicationState appState){
         this.shapeConfig = shapeConfig;
-        this.appState = appState;
+        this.primaryColor = ColorMap.getColor(appState.getActivePrimaryColor());
+        this.secondaryColor = ColorMap.getColor(appState.getActiveSecondaryColor());
+        this.shapeShadingType = appState.getActiveShapeShadingType();
     }
 
     @Override
     public void draw(Graphics p) {
         Graphics2D g = (Graphics2D) p;
-        if(appState.getActiveShapeShadingType().equals(ShapeShadingType.OUTLINE)){
-            g.setColor(ColorMap.getColor(appState.getActivePrimaryColor()));
+        if(shapeShadingType.equals(ShapeShadingType.OUTLINE)){
+            g.setColor(primaryColor);
             g.drawRect(shapeConfig.getAdjustedStart().getX(), shapeConfig.getAdjustedStart().getY(), shapeConfig.getWidth(), shapeConfig.getHeight());
-        } else if(appState.getActiveShapeShadingType().equals(ShapeShadingType.FILLED_IN)){
-            g.setColor(ColorMap.getColor(appState.getActivePrimaryColor()));
+        } else if(shapeShadingType.equals(ShapeShadingType.FILLED_IN)){
+            g.setColor(primaryColor);
             g.fillRect(shapeConfig.getAdjustedStart().getX(), shapeConfig.getAdjustedStart().getY(), shapeConfig.getWidth(), shapeConfig.getHeight());
-        } else if(appState.getActiveShapeShadingType().equals(ShapeShadingType.OUTLINE_AND_FILLED_IN)){
-            g.setColor(ColorMap.getColor(appState.getActivePrimaryColor()));
+        } else if(shapeShadingType.equals(ShapeShadingType.OUTLINE_AND_FILLED_IN)){
+            g.setColor(primaryColor);
             g.setStroke(new BasicStroke(5));
             g.drawRect(shapeConfig.getAdjustedStart().getX(), shapeConfig.getAdjustedStart().getY(), shapeConfig.getWidth(), shapeConfig.getHeight());
-            g.setColor(ColorMap.getColor(appState.getActiveSecondaryColor()));
+            g.setColor(secondaryColor);
             g.fillRect(shapeConfig.getAdjustedStart().getX(), shapeConfig.getAdjustedStart().getY(), shapeConfig.getWidth(), shapeConfig.getHeight());
         }
     }
 
     @Override
-    public void addAdjustPos(int dx, int dy) {
+    public void move(int dx, int dy) {
         Point adjustStart = shapeConfig.getAdjustedStart();
         Point adjustEnd = shapeConfig.getAdjustedEnd();
         adjustStart.setX(adjustStart.getX() + dx);

@@ -15,5 +15,10 @@ public interface IShape {
      */
     void draw(Graphics g);
 
-    void addAdjustPos(int dx, int dy);
+    /**
+     * move
+     * @param dx
+     * @param dy
+     */
+    void move(int dx, int dy);
 }
