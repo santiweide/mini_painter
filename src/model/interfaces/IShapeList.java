@@ -4,10 +4,11 @@ import view.gui.PaintCanvas;
 import view.interfaces.PaintCanvasBase;
 import view.interfaces.draw.IShape;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
- * 观察者模式
+ * Shape Array that could be observed
  * @author algorithm
  */
 public interface IShapeList {
@@ -16,10 +17,18 @@ public interface IShapeList {
     List<IShape> getShapeList();
 
     /**
-     * 注册观察者
-     * @param paintCanvas 其实是个单例
+     * register observer
+     * @param observer observers that change when notifyObserver is called
      */
-    void registerObserver(IShapeListObserver paintCanvas);
+    void registerObserver(IShapeListObserver observer);
     void notifyObserver();
 
+    void addSelectedList(IShape shape);
+    List<IShape> getSelectList();
+    void clearSelectList();
+
+    void addClipBoard(IShape shape);
+    List<IShape> getClipBoard();
+
+    void setSelectList(List<IShape> newSelectedList);
 }

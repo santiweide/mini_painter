@@ -28,13 +28,13 @@ public class DrawMouseAdapter extends MouseAdapter {
     @Override
     public void mousePressed(MouseEvent e) {
         shapeConfig.setStartPoint(new Point(e.getX(), e.getY()));
-        System.out.println("Press " + e.getX() + "," + e.getY());
+        System.out.println("Draw Press " + e.getX() + "," + e.getY());
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
         shapeConfig.setEndPoint(new Point(e.getX(), e.getY()));
-        System.out.println("Released " + e.getX() + "," + e.getY());
+        System.out.println("Draw Released " + e.getX() + "," + e.getY());
         (new CreateShapeOperator(shapeList, shapeConfig, appState)).run();
     }
 

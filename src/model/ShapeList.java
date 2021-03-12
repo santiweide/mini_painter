@@ -5,6 +5,7 @@ import model.interfaces.IShapeListObserver;
 import view.interfaces.draw.IShape;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -12,11 +13,15 @@ import java.util.List;
  */
 public class ShapeList implements IShapeList {
     private final List<IShape> shapeList;
+    private List<IShape> selectedShapeList;
+    private final List<IShape> clipBoardShapeList;
     private final List<IShapeListObserver> observerList;
 
     public ShapeList(){
         shapeList = new ArrayList<>();
         observerList = new ArrayList<>();
+        selectedShapeList = new ArrayList<>();
+        clipBoardShapeList = new ArrayList<>();
     }
 
     @Override
@@ -47,6 +52,36 @@ public class ShapeList implements IShapeList {
         for(IShapeListObserver observer : observerList){
             observer.update();
         }
+    }
+
+    @Override
+    public void addSelectedList(IShape shape) {
+        selectedShapeList.add(shape);
+    }
+
+    @Override
+    public List<IShape> getSelectList() {
+        return selectedShapeList;
+    }
+
+    @Override
+    public void clearSelectList() {
+        selectedShapeList.clear();
+    }
+
+    @Override
+    public void addClipBoard(IShape shape) {
+        clipBoardShapeList.add(shape);
+    }
+
+    @Override
+    public List<IShape> getClipBoard() {
+        return clipBoardShapeList;
+    }
+
+    @Override
+    public void setSelectList(List<IShape> newSelectedList) {
+        selectedShapeList = newSelectedList;
     }
 
 }

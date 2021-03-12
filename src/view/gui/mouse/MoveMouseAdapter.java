@@ -23,12 +23,13 @@ public class MoveMouseAdapter extends MouseAdapter {
     @Override
     public void mousePressed(MouseEvent e) {
         shapeConfig.setStartPoint(new Point(e.getX(), e.getY()));
+        System.out.println("Move Press " + e.getX() + "," + e.getY());
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        System.out.println("Move mouse released");
         shapeConfig.setEndPoint(new Point(e.getX(), e.getY()));
+        System.out.println("Move Release " + e.getX() + "," + e.getY());
         (new MoveShapeOperator(shapeList, shapeConfig)).run();
     }
 

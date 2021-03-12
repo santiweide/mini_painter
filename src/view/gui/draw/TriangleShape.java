@@ -1,5 +1,6 @@
 package view.gui.draw;
 
+import model.persistence.draw.Point;
 import view.interfaces.draw.IShape;
 
 import java.awt.*;
@@ -11,7 +12,12 @@ public class TriangleShape implements IShape {
     }
 
     @Override
-    public void move(int dx, int dy) {
+    public IShape move(int dx, int dy) {
+        return null;
+    }
 
+    @Override
+    public boolean contains(Point startPoint) {
+        return false;
     }
 }

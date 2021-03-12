@@ -20,5 +20,7 @@ public interface IShape {
      * @param dx
      * @param dy
      */
-    void move(int dx, int dy);
+    IShape move(int dx, int dy);
+
+    boolean contains(Point startPoint);
 }

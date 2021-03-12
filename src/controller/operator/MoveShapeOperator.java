@@ -10,37 +10,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MoveShapeOperator implements IOperator, IUndoable {
-    
+
     private IShapeList shapeList;
     private ShapeConfig shapeConfig;
     private IShape oldShape;
     private IShape newShape;
-    private List<IShape> tmpList;
 
     public MoveShapeOperator(IShapeList shapeList, ShapeConfig shapeConfig) {
         this.shapeConfig = shapeConfig;
         this.shapeList = shapeList;
     }
+
     @Override
     public void run() {
-        tmpList = new ArrayList<>();
         int dx = shapeConfig.getEndPoint().getX() - shapeConfig.getStartPoint().getX();
         int dy = shapeConfig.getEndPoint().getY() - shapeConfig.getStartPoint().getY();
-
-        for (IShape selectedShape : shapeList.getShapeList())
-        {
+        List<IShape> newSelectedList = new ArrayList<>();
+        // move depends on selected shaped ~~
+        for (IShape selectedShape : shapeList.getSelectList()) {
             oldShape = selectedShape;
-            tmpList.add(oldShape);
-            shapeList.remove(oldShape);
-
-            for (IShape tempShape : tmpList)
-            {
-                tempShape.move(dx, dy);
-                newShape = tempShape;
-                shapeList.add(newShape);
-            }
-            tmpList.clear();
+            newShape = selectedShape.move(dx, dy);
+            shapeList.remove(selectedShape);
+            shapeList.add(newShape);
+            newSelectedList.add(newShape);
         }
+        // moving should not detect any shapes
+        shapeList.setSelectList(newSelectedList);
         OperationHistory.add(this);
     }
 
@@ -52,7 +47,7 @@ public class MoveShapeOperator implements IOperator, IUndoable {
 
     @Override
     public void redo() {
-        shapeList.remove(newShape);
-        shapeList.add(oldShape);
+        shapeList.remove(oldShape);
+        shapeList.add(newShape);
     }
 }
