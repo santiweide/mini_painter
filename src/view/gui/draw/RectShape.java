@@ -45,7 +45,6 @@ public class RectShape implements IShape {
     @Override
     public void draw(Graphics p) {
         Graphics2D g = (Graphics2D) p;
-        // 业务属性入侵人间 丑......最好是做一个抽象类表示SelectableItem，再做一个Interface表示纯Shape，这里调用一下super().draw()
         if(isSelected) {
             g.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{1}, 0));
             g.drawRect(positionConfig.getAdjustedStart().getX()-5, positionConfig.getAdjustedStart().getY()-5, positionConfig.getWidth()+10, positionConfig.getHeight()+10);
