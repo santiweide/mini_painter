@@ -24,6 +24,9 @@ After the mouse event, we should paint. The Shapes we paint are stored in the sh
 // this is a picture from draw.io
 
 
+### MouseAdapter Observes Application States
+When Mouse Mode Changes，MouseAdapter would distribute DrawMouseAdapter/SelectMouseAdapter/MoveMouseAdapter
+
 ## Factory
 ### ShapeFactory
 There are four shapes defined in the prject. When we draw, we could get Rectangle, Triangle and Ellipse. When we click group, we could get GroupShape. All the shape should support draw, select and move. So, they could all be implemnting an interface IShape, with `draw()`, `contains()` and `move()` like methods. The shape factory uses the ApplicationState to get current shape, and gives out corresponding shape objects. 

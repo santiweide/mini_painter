@@ -27,5 +27,6 @@ public interface IApplicationState {
     MouseMode getActiveMouseMode();
 
     void register(IMouseAdapterObserver observer);
+
     void notifyObservers();
 }
