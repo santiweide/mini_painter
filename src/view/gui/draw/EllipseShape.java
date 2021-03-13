@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class EllipseShape implements IShape {
     /**
-     * position info
+     * position inf:wq:o
      */
     private final PositionConfig positionConfig;
     /**
