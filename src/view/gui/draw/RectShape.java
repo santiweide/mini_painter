@@ -46,7 +46,8 @@ public class RectShape implements IShape {
     public void draw(Graphics p) {
         Graphics2D g = (Graphics2D) p;
         if(isSelected) {
-            g.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{1}, 0));
+            g.setColor(Color.BLACK);
+            g.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{1}, 0));
             g.drawRect(positionConfig.getAdjustedStart().getX()-5, positionConfig.getAdjustedStart().getY()-5, positionConfig.getWidth()+10, positionConfig.getHeight()+10);
         }
         if (shapeShadingType.equals(ShapeShadingType.OUTLINE)) {

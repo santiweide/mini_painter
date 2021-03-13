@@ -49,7 +49,8 @@ public class TriangleShape implements IShape {
     public void draw(Graphics p) {
         Graphics2D g = (Graphics2D) p;
         if (isSelected) {
-            g.setStroke(new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{1}, 0));
+            g.setColor(Color.BLACK);
+            g.setStroke(new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{1}, 0));
             g.drawPolygon(new int[]{positionConfig.getAdjustedStart().getX() - 5, positionConfig.getAdjustedEnd().getX() + 5, positionConfig.getAdjustedStart().getX() - 5},
                     new int[]{positionConfig.getAdjustedStart().getY() - 5, positionConfig.getAdjustedEnd().getY() + 5, positionConfig.getAdjustedEnd().getY() + 5},
                     3);

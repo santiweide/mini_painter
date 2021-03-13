@@ -137,6 +137,7 @@ public class ShapeList implements IShapeList {
                 // 从shapeList删除最后一个GroupShape类型的IShape
                 lastGrouped = (GroupShape) p;
                 shapeList.remove(lastGrouped);
+                lastGrouped.setIsSelected(false);
                 selectedShapeList.remove(lastGrouped);
                 lastGrouped.getGroupItemList().forEach(grouped -> {
                     // 把lastGroup中的list添加到shapeList 和 selectedList中
