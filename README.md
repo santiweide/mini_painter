@@ -1,12 +1,5 @@
 # J-Paint Project Report
 
-contact email: ggy_778@sina.com
-
-Note: Different Sprints are on features, naming like sprint1, sprint2, sprint3, and sprin4, which could be found in commit message and git branches.
-
-[github link](https://github.com/santiweide/mini_painter)
-
-
 
 ## Content
 
